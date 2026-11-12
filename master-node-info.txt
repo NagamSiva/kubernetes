@@ -1,0 +1,21 @@
+16.192.154.156(public) - 172.31.12.193(private) - master
+
+16.171.66.214(public) - 172.31.15.20 (private) - node01
+
+13.53.194.248(public) - 172.31.12.36(private) - node02
+
+
+==========ON Master =====================
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+============ on all nodes ===================================
+
+kubeadm join 172.31.12.193:6443 --token xvhxml.usochn8yrmwa1fag \
+        --discovery-token-ca-cert-hash sha256:b924aa2813d3d3ba066287a80cac10089328cec9dad57841720de3e55f40ab3e
